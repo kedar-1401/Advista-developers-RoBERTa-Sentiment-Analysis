@@ -1,3 +1,4 @@
+import os
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import pandas as pd
@@ -64,6 +65,6 @@ def upload_csv():
 
     return jsonify(results)
 
-# Run the Flask server
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))  # Use Render's PORT or default to 5000 locally
+    app.run(host='0.0.0.0', port=port, debug=True)
